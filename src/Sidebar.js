@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -21,10 +22,10 @@ function Sidebar() {
       <hr class="sidebar-divider my-0" />
 
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+        <Link to={"/dashboard"} class="nav-link">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
-        </a>
+          </Link>
       </li>
 
       <hr class="sidebar-divider" />
@@ -32,17 +33,17 @@ function Sidebar() {
       <div class="sidebar-heading">Interface</div>
 
       <li class="nav-item">
-        <a
+        <Link
           class="nav-link collapsed"
-          href="#"
+          to={"/users"}
           data-toggle="collapse"
           data-target="#collapseTwo"
           aria-expanded="true"
           aria-controls="collapseTwo"
         >
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
+          <span>Users</span>
+        </Link>
         <div
           id="collapseTwo"
           class="collapse"
