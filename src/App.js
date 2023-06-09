@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import User from './User';
 import { useContext } from 'react';
+import UserCreate from './UserCreate';
 
 function App() {
   const {user}=(useContext)
@@ -21,7 +22,8 @@ function App() {
       <Topbar/>
 <Routes>
 <Route path="/dashboard" element={<Dashboard/>}></Route>
-<Route path="/users" element={<User/>}></Route> 
+<Route path="/users" element={<User/>}></Route>
+<Route path="/user_create" element={<UserCreate/>}></Route> 
 </Routes>
     </div>
     </div>
