@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import User from './User';
 import { useContext } from 'react';
 import UserCreate from './UserCreate';
+import ViewUser from './ViewUser';
 
 function App() {
   const {user}=(useContext)
@@ -23,7 +24,8 @@ function App() {
 <Routes>
 <Route path="/dashboard" element={<Dashboard/>}></Route>
 <Route path="/users" element={<User/>}></Route>
-<Route path="/user_create" element={<UserCreate/>}></Route> 
+<Route path="/user_create" element={<UserCreate/>}></Route>
+<Route path="/users/:id" element={<ViewUser/>}></Route>
 </Routes>
     </div>
     </div>
