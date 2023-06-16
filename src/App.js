@@ -11,6 +11,7 @@ import User from './User';
 import { useContext } from 'react';
 import UserCreate from './UserCreate';
 import ViewUser from './ViewUser';
+import EditUser from './EditUser';
 
 function App() {
   const {user}=(useContext)
@@ -26,6 +27,7 @@ function App() {
 <Route path="/users" element={<User/>}></Route>
 <Route path="/user_create" element={<UserCreate/>}></Route>
 <Route path="/users/:id" element={<ViewUser/>}></Route>
+<Route path="/edit/:id" element={<EditUser/>}></Route>
 </Routes>
     </div>
     </div>

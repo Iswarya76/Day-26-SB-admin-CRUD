@@ -28,12 +28,29 @@ function User() {
         dob: "16.04.1999",
         gender: "Female",
       },
+      {
+        id: 3,
+        username: "Person 3",
+        email: "person3@gmail.com",
+        country: "India",
+        state: "Tamilnadu",
+        city: "Chennai",
+        phone: "9947654320",
+        dob: "25.06.1999",
+        gender: "Female",
+      },
     ]);
   }, []);
+  let deleteUser=()=>{
+    const result=window.confirm("Are you sure do you want to delete?")
+    if(result){
+      alert("Deleted")
+    }
+  }
   return (
     <div className="container-fluid">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-2 text-gray-800">Users</h1>
+      <div className="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 className="h3 mb-2 text-gray-800">Users</h1>
         <Link
           to={"/user_create"}
           className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
@@ -41,17 +58,17 @@ function User() {
           <i className="fas fa-download fa-sm text-white-50"></i>Create User
         </Link>
       </div>
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      <div className="card shadow mb-4">
+        <div className="card-header py-3">
+          <h6 className="m-0 font-weight-bold text-primary">DataTables Example</h6>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
+        <div className="card-body">
+          <div className="table-responsive">
             <table
-              class="table table-bordered"
+              className="table table-bordered"
               id="dataTable"
               width="100%"
-              cellspacing="0"
+              cellSpacing="0"
             >
               <thead>
                 <tr>
@@ -63,6 +80,7 @@ function User() {
                   <th>Phone</th>
                   <th>DOB</th>
                   <th>Gender</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tfoot>
@@ -75,10 +93,11 @@ function User() {
                   <th>Phone</th>
                   <th>DOB</th>
                   <th>Gender</th>
+                  <th>Action</th>
                 </tr>
               </tfoot>
               <tbody>
-               {users.map((user) => {
+                {users.map((user) => {
                   return (
                     <tr>
                       <td>{user.username}</td>
@@ -90,10 +109,18 @@ function User() {
                       <td>{user.dob}</td>
                       <td>{user.gender}</td>
                       <tr>
-                  <td>
-                    <Link to={`/users/${user.id}`} className="btn btn-warning mr-2">View</Link>
-                  </td>
-                </tr>
+                        <td>
+                          <Link
+                            to={`/users/${user.id}`}
+                            className="btn btn-info mr-2"
+                          >View
+                          </Link>
+                        </td>
+                        <td>
+                          <Link to={`/edit/${user.id}`}className="btn btn-primary mr-2">Edit</Link>
+                        </td>
+                        <button onClick={() => deleteUser()} className="btn btn-danger mt-1 ">Delete</button>
+                      </tr>
                     </tr>
                   );
                 })}
