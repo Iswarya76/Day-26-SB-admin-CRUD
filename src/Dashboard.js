@@ -22,9 +22,6 @@ function Dashboard() {
                                 className="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
      </div>
      <div className="row">
-       <Card/> 
-       <Card/>
-       <Card/>
        <Card/>
      </div>
     </div>

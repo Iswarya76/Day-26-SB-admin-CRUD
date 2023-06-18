@@ -8,13 +8,12 @@ import './CSS/fontawesome-free/css/all.min.css';
 import Dashboard from './Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import User from './User';
-import { useContext } from 'react';
 import UserCreate from './UserCreate';
 import ViewUser from './ViewUser';
 import EditUser from './EditUser';
 
 function App() {
-  const {user}=(useContext)
+
   return (
 <BrowserRouter>
 <div id="wrapper">

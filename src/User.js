@@ -1,46 +1,27 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function User() {
   const [users, setUsers] = useState([]);
+  const [isLoading,setLoading]=useState(false);
   useEffect(() => {
-    setUsers([
-      {
-        id: 1,
-        username: "Person 1",
-        email: "person1@gmail.com",
-        country: "India",
-        state: "Tamilnadu",
-        city: "Dindigul",
-        phone: "9987654321",
-        dob: "16.06.1998",
-        gender: "Male",
-      },
-      {
-        id: 2,
-        username: "Person 2",
-        email: "person2@gmail.com",
-        country: "India",
-        state: "Tamilnadu",
-        city: "Chennai",
-        phone: "9987654320",
-        dob: "16.04.1999",
-        gender: "Female",
-      },
-      {
-        id: 3,
-        username: "Person 3",
-        email: "person3@gmail.com",
-        country: "India",
-        state: "Tamilnadu",
-        city: "Chennai",
-        phone: "9947654320",
-        dob: "25.06.1999",
-        gender: "Female",
-      },
-    ]);
+fetchData()
   }, []);
+  let fetchData=async()=>{
+    try{
+      setLoading(true)
+     const users=await axios.get('https://635fff92ca0fe3c21aaa41e9.mockapi.io/user')
+     console.log(users)
+     setUsers(users.data)
+     setLoading(false)
+    }
+    catch(error){
+      alert("Error")
+    }
+
+  }
   let deleteUser=()=>{
     const result=window.confirm("Are you sure do you want to delete?")
     if(result){
@@ -58,7 +39,12 @@ function User() {
           <i className="fas fa-download fa-sm text-white-50"></i>Create User
         </Link>
       </div>
-      <div className="card shadow mb-4">
+      {
+        isLoading?<div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div> :<div className="card shadow mb-4">
         <div className="card-header py-3">
           <h6 className="m-0 font-weight-bold text-primary">DataTables Example</h6>
         </div>
@@ -72,9 +58,9 @@ function User() {
             >
               <thead>
                 <tr>
+                  <th>Id</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Country</th>
                   <th>State</th>
                   <th>City</th>
                   <th>Phone</th>
@@ -85,9 +71,9 @@ function User() {
               </thead>
               <tfoot>
                 <tr>
+                  <th>Id</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Country</th>
                   <th>State</th>
                   <th>City</th>
                   <th>Phone</th>
@@ -97,12 +83,12 @@ function User() {
                 </tr>
               </tfoot>
               <tbody>
-                {users.map((user) => {
+                {users.map((user,i) => {
                   return (
-                    <tr>
-                      <td>{user.username}</td>
+                    <tr key={i}>
+                      <td>{i+1}</td>
+                      <td>{user.name}</td>
                       <td>{user.email}</td>
-                      <td>{user.country}</td>
                       <td>{user.state}</td>
                       <td>{user.city}</td>
                       <td>{user.phone}</td>
@@ -117,7 +103,7 @@ function User() {
                           </Link>
                         </td>
                         <td>
-                          <Link to={`/edit/${user.id}`}className="btn btn-primary mr-2">Edit</Link>
+                          <Link to={`/edit/${user.id}`} className="btn btn-primary mr-2">Edit</Link>
                         </td>
                         <button onClick={() => deleteUser()} className="btn btn-danger mt-1 ">Delete</button>
                       </tr>
@@ -129,6 +115,7 @@ function User() {
           </div>
         </div>
       </div>
+      }
     </div>
   );
 }
